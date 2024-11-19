@@ -1,0 +1,34 @@
+# Load data
+library(readr)
+path <- "C:\\Education\\Education\\Upcoming papers\\Geothermale\\Water journal\\Water"
+setwd("C:\\Education\\Education\\Upcoming papers\\Geothermale\\Water journal\\Water")
+
+my_data <- read_csv("HPC.csv")
+
+# calculate Spearman's rank correlation
+round(cor(my_data, method = "spearman"), digits = 2)
+
+# developing correlation matrix
+library(corrplot)
+
+corrplot(cor(my_data, method = "spearman"),
+  method = "number",
+  type = "lower"
+)
+
+# developing correlogram for various parameters
+
+# edit from here
+tiff(file="C:\\Education\\Education\\Upcoming papers\\Geothermale\\Water journal\\Water\\Spearman's rank correlation.tiff",
+width=12, height=8, units="in", res=300)
+  
+corrplot2(
+  data = my_data,
+  method = "spearman", # use Spearman's rank correlation
+  sig.level = 0.9999999,
+  order = "original",
+  diag = FALSE,
+  type = "lower",
+  tl.srt = 75
+)
+dev.off()
